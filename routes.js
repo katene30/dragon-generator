@@ -5,7 +5,11 @@ const db = require('./db')
 const router = express.Router()
 
 router.get('/', (req, res) => {
-res.send('Sup eh worlduxx')
+res.redirect('/home')
+})
+
+router.get('/home', (req,res) => {
+  res.render('')
 })
 
 module.exports = router
