@@ -5,8 +5,7 @@ const connection = require('knex')(config)
 module.exports = {
   getUser: getUser,
   getUsers: getUsers,
-  getMalePictures,
-  getFemalePictures
+  getPictures
 }
 
 function getUsers (db = connection) {
@@ -17,10 +16,6 @@ function getUser (id, db = connection) {
   return db('users').where('id', id).first()
 }
 
-function getMalePictures (gender, db = connection) {
-  return db('dragons').where('Gender', gender).select()
-}
-
-function getFemalePictures (gender, db = connection) {
+function getPictures(gender, db = connection) {
   return db('dragons').where('Gender', gender).select()
 }
