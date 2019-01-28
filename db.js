@@ -5,7 +5,8 @@ const connection = require('knex')(config)
 module.exports = {
   getUser: getUser,
   getUsers: getUsers,
-  getPictures
+  getPictures,
+  randomName
 }
 
 function getUsers (db = connection) {
@@ -18,4 +19,13 @@ function getUser (id, db = connection) {
 
 function getPictures(gender, db = connection) {
   return db('dragons').where('Gender', gender).select()
+}
+
+
+function randomName(gender,db = connection) {
+  return db('dragons')
+    .select('firstName', 'lastName')
+    .where('Gender', gender)
+    .orderByRaw('random()')
+    .limit(1)
 }

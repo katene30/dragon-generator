@@ -21,8 +21,25 @@ router.get('/:gender/dragon-pictures', (req,res) => {
 })
 
 router.get('/:gender/dragon-names', (req, res) => {
-  res.send('hello world')
+  var gender = req.params.gender
+  var id = req.params.id
+  var image = req.query.image
+  return db.randomName(gender)
+  .then((randy) => {
+    randy[0].gender = gender
+    randy[0].id = id
+    randy[0].image = image
+    res.render('names',randy[0])
+  })
 })
 
+router.post('/:gender/add', (req,res) => {
+  var newDragon = {
+    image:req.query.image,
+    firstName:req.body.firstName,
+    lastName:req.body.lastName
+  }
+  res.render('dragon', newDragon)
+})
 
 module.exports = router
