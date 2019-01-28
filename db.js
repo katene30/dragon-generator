@@ -18,14 +18,14 @@ function getUser (id, db = connection) {
 }
 
 function getPictures(gender, db = connection) {
-  return db('dragons').where('Gender', gender).select()
+  return db('dragons').where('gender', gender).select()
 }
 
 
 function randomName(gender,db = connection) {
   return db('dragons')
     .select('firstName', 'lastName')
-    .where('Gender', gender)
+    .where('gender', gender)
     .orderByRaw('random()')
     .limit(1)
 }
