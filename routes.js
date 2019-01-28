@@ -14,13 +14,17 @@ router.get('/home', (req,res) => {
 
 router.get('/:gender/dragon-pictures', (req,res) => {
   var gender = req.params.gender
-  if(gender == male) {
-    return db.getPictures
-    res.render('pictures', images)
-  } else if (gender == female) {
-    res.render('pictures', images)
+  if(gender == 'male') {
+    return db.getMalePictures(gender)
+    .then((dragons) => {
+      res.render('pictures', {dragons})
+    })
+  } else if (gender == 'female') {
+    return db.getFemalePictures(gender)
+    .then((dragons) => {
+      res.render('pictures', {dragons})
+    })
   }
-
 })
 
 

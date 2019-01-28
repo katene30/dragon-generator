@@ -1,9 +1,10 @@
-<header>
+<h1>
     Pick your pic!
-</header>
+</h1>
 
-{{#each dragon}}
+{{#each dragons}}
+<h3>{{firstName}}</h3>
 
-<img src="{{this}}" alt="dragon">
+<img src="/{{image}}" alt="dragon">
 
 {{/each}}
