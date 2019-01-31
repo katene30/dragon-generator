@@ -38,16 +38,13 @@ router.get('/:gender/dragon-names', (req, res) => {
       randy[0].both = true
       randy[0].gender = gender
       randy[0].image = image
-      // randy[0] = {
-      //   both: true
-      // }
+
       res.render('names',randy[0])
     })
   } else{
     return db.randomName(gender)
     .then((randy) => {
       randy[0].gender = gender
-      randy[0].id = id
       randy[0].image = image
       res.render('names',randy[0])
     })
