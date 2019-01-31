@@ -6,7 +6,9 @@ module.exports = {
   getUser: getUser,
   getUsers: getUsers,
   getPictures,
-  randomName
+  randomName,
+  getDragons,
+  randomNameAll
 }
 
 function getUsers (db = connection) {
@@ -28,4 +30,12 @@ function randomName(gender,db = connection) {
     .where('gender', gender)
     .orderByRaw('random()')
     .limit(1)
+}
+
+function randomNameAll(db = connection) {
+  return db('dragons').select('firstName', 'lastName').orderByRaw('random()').limit(1)
+}
+
+function getDragons(db = connection) {
+  return db('dragons').select()
 }
